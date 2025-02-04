@@ -1,0 +1,59 @@
+<div
+  class="relative w-screen min-h-[70vh] flex flex-col items-center justify-around bg-[url('/images/pharm.jpg')] bg-cover bg-center p-8"
+>
+  <!-- Overlay for better contrast (optional) -->
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 text-center text-white flex flex-col items-center gap-8"
+  >
+    <div class="avatar flex justify-center w-full">
+      <div
+        class="ring-primary ring-offset-base-100 w-60 h-60 md:w-80 md:h-80 rounded-full ring ring-offset-2 overflow-hidden"
+      >
+        <img src="/images/bono.jpg" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <p class="text-2xl md:text-4xl font-bold max-w-xl px-6 md:px-0">
+      Hello, I'm <span class="text-pink-600">Madima Bono</span>, a final-year
+      pharmacy student. Here you can check what I've been up to the past years.
+    </p>
+  </div>
+</div>
+
+<section class="p-8 bg-gray-100">
+  <h2 class="text-2xl font-bold mb-4">Rick and Morty Characters</h2>
+
+  <!-- Debug information -->
+  <div class="mb-4">
+    {% if characters %}
+    <pre>{{ characters | dump | safe }}</pre>
+    {% else %} No characters data available {% endif %}
+  </div>
+
+  {{ characters.results }}
+
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {% if characters.results %} {% for character in characters.results %}
+    <div class="card w-full bg-white shadow-lg">
+      <figure>
+        <img
+          src="{{ character.image }}"
+          alt="{{ character.name }}"
+          class="rounded-t-lg w-full h-48 object-cover"
+        />
+      </figure>
+      <div class="card-body">
+        <h3 class="text-lg font-semibold">{{ character.name }}</h3>
+        <p class="text-gray-600">Status: {{ character.status }}</p>
+        <p class="text-gray-600">Species: {{ character.species }}</p>
+        <p class="text-gray-600">Origin: {{ character.origin.name }}</p>
+      </div>
+    </div>
+    {% endfor %} {% else %}
+    <p>No characters found in results.</p>
+    {% endif %}
+  </div>
+</section>
