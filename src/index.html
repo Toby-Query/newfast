@@ -26,15 +26,6 @@
 <section class="p-8 bg-gray-100">
   <h2 class="text-2xl font-bold mb-4">Rick and Morty Characters</h2>
 
-  <!-- Debug information -->
-  <div class="mb-4">
-    {% if characters %}
-    <pre>{{ characters | dump | safe }}</pre>
-    {% else %} No characters data available {% endif %}
-  </div>
-
-  {{ characters.results }}
-
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
     {% if characters.results %} {% for character in characters.results %}
     <div class="card w-full bg-white shadow-lg">
